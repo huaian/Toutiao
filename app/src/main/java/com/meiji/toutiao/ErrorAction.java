@@ -13,14 +13,16 @@ public class ErrorAction {
     @NonNull
     public static Consumer<Throwable> error() {
         return throwable -> {
-            if (BuildConfig.DEBUG) {
+            boolean DEBUG = true;
+            if (DEBUG) {
                 throwable.printStackTrace();
             }
         };
     }
 
     public static void print(@NonNull Throwable throwable) {
-        if (BuildConfig.DEBUG) {
+        boolean DEBUG = true;
+        if (DEBUG) {
             throwable.printStackTrace();
         }
     }

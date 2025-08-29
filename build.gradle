@@ -2,11 +2,18 @@
 
 buildscript {
     repositories {
+        // 替换 jcenter() 为国内镜像
+        maven { url 'https://repo.huaweicloud.com/repository/maven'}  // 华为云
+        maven { url 'https://maven.aliyun.com/repository/jcenter'}  // 阿里云
+        maven { url 'https://maven.aliyun.com/repository/google'}  // 阿里云
+        mavenCentral()
         google()
         jcenter()
+        maven { url 'https://dl.bintray.com/google/tensorflow-lite' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.0'
+//        classpath 'com.android.tools.build:gradle:3.3.0'
+        classpath 'com.android.tools.build:gradle:8.9.2'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -15,10 +22,18 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url 'https://repo.huaweicloud.com/repository/maven'}  // 华为云
         google()
+        mavenCentral()
+        // For libraries not found in standard repos
+        // Additional repository that might contain these dependencies
         jcenter()
+        maven { url 'https://maven.tensorflow.org/repository/maven-public/' }  // TensorFlow 专用仓库
         maven { url "https://jitpack.io" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+//        maven { url 'https://maven.aliyun.com/repository/jcenter'}  // 阿里云
+        maven { url 'https://maven.google.com/' }
+        maven { url 'https://maven.aliyun.com/repository/google'}  // 阿里云
     }
 }
 

@@ -245,7 +245,7 @@ public class PhotoContentFragment extends BaseFragment<IPhotoContent.Presenter> 
         // 开启DOM storage API功能
         settings.setDomStorageEnabled(true);
         // 开启application Cache功能
-        settings.setAppCacheEnabled(true);
+//        settings.setAppCacheEnabled(true);
         // 判断是否为无图模式
         settings.setBlockNetworkImage(SettingUtil.getInstance().getIsNoPhotoMode());
         // 不调用第三方浏览器即可进行页面反应

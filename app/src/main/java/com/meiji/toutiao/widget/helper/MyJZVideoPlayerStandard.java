@@ -32,11 +32,11 @@ public class MyJZVideoPlayerStandard extends JZVideoPlayerStandard {
     public void onClick(View v) {
         super.onClick(v);
         int id = v.getId();
-        if (id == R.id.fullscreen) {
-            if (onClickFullScreenListener != null) {
-                onClickFullScreenListener.onClickFullScreen();
-            }
-        }
+//        if (id == R.id.fullscreen) {
+//            if (onClickFullScreenListener != null) {
+//                onClickFullScreenListener.onClickFullScreen();
+//            }
+//        }
     }
 
     public interface onClickFullScreenListener {

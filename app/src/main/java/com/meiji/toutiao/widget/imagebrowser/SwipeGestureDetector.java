@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
-import com.meiji.toutiao.BuildConfig;
+//import com.meiji.toutiao.BuildConfig;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -25,7 +25,7 @@ public class SwipeGestureDetector {
     public static final int DIRECTION_TOP = 0x02;
     public static final int DIRECTION_BOTTOM = 0x03;
     private static final String TAG = "SwipeGestureDetector";
-    private static final boolean DEBUG = BuildConfig.DEBUG;
+//    private static final boolean DEBUG = BuildConfig.DEBUG;
     private final Handler handler = new Handler();
     private OnSwipeGestureListener listener;
     private int touchSlop;
@@ -51,6 +51,7 @@ public class SwipeGestureDetector {
 
         float x = event.getRawX();
         float y = event.getRawY();
+        boolean DEBUG = true;
         if (DEBUG)
             Log.d(TAG, "onInterceptTouchEvent: " + x + "-" + y);
 
@@ -75,6 +76,7 @@ public class SwipeGestureDetector {
             case MotionEvent.ACTION_MOVE:
                 final float xDiff = Math.abs(x - initialMotionX);
                 final float yDiff = Math.abs(y - initialMotionY);
+//                boolean DEBUG = true;
                 if (xDiff > touchSlop && xDiff > yDiff) {
                     isBeingDragged = true;
                     if (x - initialMotionX > 0) {
@@ -109,6 +111,7 @@ public class SwipeGestureDetector {
 
         float x = event.getRawX();
         float y = event.getRawY();
+        boolean DEBUG = true;
         if (DEBUG) Log.d(TAG, "onTouchEvent: " + x + "-" + y);
 
         switch (action) {
@@ -134,6 +137,7 @@ public class SwipeGestureDetector {
                 } else {
                     final float xDiff = Math.abs(x - initialMotionX);
                     final float yDiff = Math.abs(y - initialMotionY);
+//                    boolean DEBUG = true;
                     if (xDiff > touchSlop && xDiff > yDiff) {
                         isBeingDragged = true;
                         if (x - initialMotionX > 0) {
@@ -147,10 +151,10 @@ public class SwipeGestureDetector {
                         isBeingDragged = true;
                         if (y - initialMotionY > 0) {
                             direction = DIRECTION_BOTTOM;
-                            if (DEBUG) Log.d(TAG, "onTouchEvent: BOTTOM");
+//                            if (DEBUG) Log.d(TAG, "onTouchEvent: BOTTOM");
                         } else {
                             direction = DIRECTION_TOP;
-                            if (DEBUG) Log.d(TAG, "onTouchEvent: TOP");
+//                            if (DEBUG) Log.d(TAG, "onTouchEvent: TOP");
                         }
                     }
                 }

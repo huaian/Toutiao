@@ -6,7 +6,7 @@ import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
-import com.meiji.toutiao.BuildConfig;
+//import com.meiji.toutiao.BuildConfig;
 import com.meiji.toutiao.InitApp;
 import com.meiji.toutiao.SdkManager;
 import com.meiji.toutiao.api.INewsApi;
@@ -86,9 +86,9 @@ public class RetrofitFactory {
                             .retryOnConnectionFailure(true);
 
                     // Log 拦截器
-                    if (BuildConfig.DEBUG) {
-                        builder = SdkManager.initInterceptor(builder);
-                    }
+//                    if (BuildConfig.DEBUG) {
+//                        builder = SdkManager.initInterceptor(builder);
+//                    }
 
                     retrofit = new Retrofit.Builder()
                             .baseUrl(INewsApi.HOST)

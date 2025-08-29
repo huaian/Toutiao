@@ -23,10 +23,10 @@ public class InitApp extends MultiDexApplication {
 
         initTheme();
 
-        if (BuildConfig.DEBUG) {
-            SdkManager.initStetho(this);
-            SdkManager.initLeakCanary(this);
-        }
+//        if (BuildConfig.DEBUG) {
+//            SdkManager.initStetho(this);
+//            SdkManager.initLeakCanary(this);
+//        }
     }
 
     private void initTheme() {

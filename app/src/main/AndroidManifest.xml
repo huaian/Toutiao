@@ -24,8 +24,10 @@
         <activity
             android:name=".SplashActivity"
             android:configChanges="orientation|screenSize|uiMode"
+            android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/SplashTheme">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
@@ -34,6 +36,7 @@
         <activity-alias
             android:name=".SplashActivity_circle"
             android:enabled="true"
+            android:exported="true"
             android:icon="@mipmap/ic_launcher_circle"
             android:label="@string/app_name"
             android:targetActivity=".SplashActivity">
@@ -46,6 +49,7 @@
         <activity-alias
             android:name=".SplashActivity_rect"
             android:enabled="false"
+            android:exported="true"
             android:icon="@mipmap/ic_launcher_rect"
             android:label="@string/app_name"
             android:targetActivity=".SplashActivity">
@@ -58,6 +62,7 @@
         <activity-alias
             android:name=".SplashActivity_square"
             android:enabled="false"
+            android:exported="true"
             android:icon="@mipmap/ic_launcher_square"
             android:label="@string/app_name"
             android:targetActivity=".SplashActivity">
@@ -85,15 +90,16 @@
             android:label="@string/title_comment"
             android:theme="@style/AppTheme.NoActionBar.Slidable"/>
 
-        <activity
-            android:name=".module.joke.comment.JokeCommentActivity"
-            android:configChanges="orientation|screenSize|uiMode"
-            android:label="@string/title_joke_comment"
-            android:theme="@style/AppTheme.NoActionBar.Slidable"/>
+<!--        <activity-->
+<!--            android:name=".module.joke.comment.JokeCommentActivity"-->
+<!--            android:configChanges="orientation|screenSize|uiMode"-->
+<!--            android:label="@string/title_joke_comment"-->
+<!--            android:theme="@style/AppTheme.NoActionBar.Slidable"/>-->
 
         <activity
             android:name="com.meiji.toutiao.setting.SettingActivity"
             android:configChanges="orientation|screenSize|uiMode"
+            android:exported="true"
             android:label="@string/title_settings"
             android:theme="@style/AppTheme.NoActionBar.Slidable">
             <intent-filter>

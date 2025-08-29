@@ -14,6 +14,14 @@ import retrofit2.http.Url;
  * Created by Meiji on 2017/5/10.
  */
 
+/**
+* category 分类 : 新闻/图片/视频栏目
+* curTab  搜索栏目 1综合 2视频 3图集 4用户 5问答
+* platform pc | mobile 
+* max_behot_time 请求时希望获取的最新内容的时间上限 
+*/
+
+
 public interface IMediaApi {
 
     /**
