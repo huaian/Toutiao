@@ -12,6 +12,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
+//import androidx.annotation.NonNull;
+//import com.google.android.material.bottomnavigation.BottomNavigationView;
+//import com.google.android.material.navigation.NavigationView;
+//import androidx.fragment.app.FragmentTransaction;
+//import androidx.drawerlayout.widget.DrawerLayout;
+//import androidx.appcompat.app.ActionBarDrawerToggle;
+//import androidx.appcompat.app.AppCompatDelegate;
+//import androidx.appcompat.widget.Toolbar;
+
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +37,9 @@ import com.meiji.toutiao.module.video.VideoTabLayout;
 import com.meiji.toutiao.setting.SettingActivity;
 import com.meiji.toutiao.util.SettingUtil;
 import com.meiji.toutiao.widget.helper.BottomNavigationViewHelper;
+import android.view.View;
+import android.widget.Button;
+
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -54,6 +66,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button btnNewArticle = findViewById(R.id.btn_new_article); btnNewArticle.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { Intent intent = new Intent(MainActivity.this, ArticleEditorActivity.class); startActivity(intent); } });
         initView();
 
         if (savedInstanceState != null) {
@@ -61,6 +74,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             photoTabLayout = (PhotoTabLayout) getSupportFragmentManager().findFragmentByTag(PhotoTabLayout.class.getName());
             videoTabLayout = (VideoTabLayout) getSupportFragmentManager().findFragmentByTag(VideoTabLayout.class.getName());
             mediaChannelView = (MediaChannelView) getSupportFragmentManager().findFragmentByTag(MediaChannelView.class.getName());
+
+//            newsTabLayout = getSupportFragmentManager().findFragmentByTag(NewsTabLayout.class.getName());
+//            photoTabLayout = getSupportFragmentManager().findFragmentByTag(PhotoTabLayout.class.getName());
+//            videoTabLayout = getSupportFragmentManager().findFragmentByTag(VideoTabLayout.class.getName());
+//            mediaChannelView = getSupportFragmentManager().findFragmentByTag(MediaChannelView.class.getName());
             // 恢复 recreate 前的位置
             showFragment(savedInstanceState.getInt(POSITION));
             bottom_navigation.setSelectedItemId(savedInstanceState.getInt(SELECT_ITEM));

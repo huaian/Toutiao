@@ -11,7 +11,7 @@ static def releaseTime() {
 android {
     namespace = 'com.meiji.toutiao'
     compileSdkVersion = 36
-    buildToolsVersion '28.0.3'
+    buildToolsVersion '35.0.0'
     defaultConfig {
         applicationId "com.meiji.toutiao"
         minSdkVersion 21
@@ -75,6 +75,9 @@ android {
     lintOptions {
         disable 'CheckResult'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -115,6 +118,14 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
 
+//    implementation 'androidx.appcompat:appcompat:1.3.1'
+//     anroidx 依赖
+//    implementation 'com.google.android.material:material:1.4.0'
+//    implementation 'androidx.viewpager:viewpager:1.0.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+
+
     // 持久化 Cookie
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 
@@ -137,6 +148,8 @@ dependencies {
     // 权限管理
 //    implementation 'com.yanzhenjie:permission:2.0.0-rc3'
     implementation 'com.yanzhenjie:permission:2.0.0-rc3'
+//    implementation 'com.yanzhenjie.permission:x:2.0.3'
+//    implementation 'com.r0adkll:slidableactivity:2.1.0'
 
     // 调试工具
     debugImplementation 'com.facebook.stetho:stetho:1.5.0'
@@ -167,7 +180,33 @@ dependencies {
 
     // ViewPager 指示器
     implementation 'com.pacioianu.david:ink-page-indicator:1.3.0'
+//
+//    implementation 'androidx.webkit:webkit:1.8.0'
+//
+//    implementation 'androidx.appcompat:appcompat:1.3.1'
+//
+//    implementation 'androidx.annotation:annotation:1.3.0'
+//
+//    implementation 'androidx.viewpager:viewpager:1.0.0'
+//
+//    // 添加 Support Library 注解依赖
+//    implementation 'com.android.support:support-annotations:28.0.0'
+////    implementation 'androidx.webkit:webkit:1.8.0'  // 使用最新稳定版
+//
+//    // 权限请求库
+//    implementation 'com.yanzhenjie:permission:2.0.3'
+//// 图片查看器
+//    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+//// 页面指示器
+//    implementation 'com.pacioianu.david:ink-page-indicator:1.3.0'
+//
+//    implementation 'com.google.android.material:material:1.4.0'
 
-//    implementation 'androidx.webkit:webkit:1.8.0'  // 使用最新稳定版
+
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
+
 
 }

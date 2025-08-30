@@ -41,5 +41,6 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/nav_menu"/>
+    <Button android:id="@+id/btn_new_article" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="新建文章" />
 
 </android.support.v4.widget.DrawerLayout>

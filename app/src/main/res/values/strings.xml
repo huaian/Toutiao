@@ -149,6 +149,9 @@
     <string name="permission_write_rationale">使用此功能需要打开存储权限</string>
     <string name="permission_write_denied">你拒绝了权限，该功能不可用</string>
     <string name="permission_write_never_ask">用户设置不再询问权限申请</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 
 </resources>

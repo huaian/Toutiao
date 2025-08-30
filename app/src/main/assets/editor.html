@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Article Editor</title>
+    <!-- 引入 CodeMirror 6 CSS 和 JS -->
+    <link rel="stylesheet" href="codemirror/codemirror.min.css">
+    <script src="codemirror/codemirror.min.js"></script>
+    <script src="codemirror/mode/markdown/markdown.min.js"></script>
+    <style>
+        .editor-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        #editor {
+            flex: 1;
+            overflow: auto;
+        }
+        .toolbar {
+            padding: 10px;
+            background: #f5f5f5;
+        }
+        .toolbar button {
+            margin: 5px;
+            padding: 8px 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="editor-container">
+    <div class="toolbar">
+        <button onclick="saveArticle()">保存</button>
+        <button onclick="insertHeading()">标题</button>
+        <button onclick="insertBold()">粗体</button>
+        <button onclick="insertItalic()">斜体</button>
+    </div>
+    <div id="editor"></div>
+</div>
+
+<script>
+    // 初始化 CodeMirror 6
+    const editor = new CodeMirror(document.getElementById("editor"), {
+        value: "",
+        lineNumbers: true,
+        mode: "markdown",
+        lineWrapping: true
+    });
+
+    // 监听内容变化
+    editor.on("change", function(cm) {
+        window.Android.onContentChange(cm.getValue());
+    });
+
+    // 保存文章
+    function saveArticle() {
+        window.Android.saveArticle();
+    }
+
+    // 插入标题
+    function insertHeading() {
+        const cursor = editor.getCursor();
+        editor.replaceRange("# ", cursor);
+        editor.setCursor({line: cursor.line, ch: cursor.ch + 2});
+    }
+
+    // 插入粗体
+    function insertBold() {
+        const selected = editor.getSelection();
+        editor.replaceSelection("**" + selected + "**");
+    }
+
+    // 插入斜体
+    function insertItalic() {
+        const selected = editor.getSelection();
+        editor.replaceSelection("*" + selected + "*");
+    }
+</script>
+</body>
+</html>

@@ -1,6 +1,8 @@
 package com.meiji.toutiao.bean.news;
 
 import android.support.annotation.NonNull;
+//import androidx.annotation.NonNull;
+
 
 /**
  * Created by Meiji on 2017/3/10.

@@ -11,6 +11,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+// 添加缺失的导入
+import com.r0adkll.slidr.Slidr;
+import com.r0adkll.slidr.model.SlidrInterface;
+//import com.meiji.toutiao.util.ErrorAction;
+//import com.meiji.toutiao.util.IntentAction;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -61,6 +66,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
  */
 
 public class ImageBrowserActivity extends BaseActivity {
+    private SlidrInterface slidrInterface;
 
     private static final String TAG = "ImageBrowserActivity";
     private static final String EXTRA_URl = "url";
