@@ -74,6 +74,31 @@
         const selected = editor.getSelection();
         editor.replaceSelection("*" + selected + "*");
     }
+    // 编辑器准备就绪后通知Android
+        function onEditorReady() {
+            Android.onEditorReady();
+        }
+
+        // 聚焦编辑器并将光标移到末尾
+        function focusEditor() {
+            editor.focus();
+
+            // 获取内容长度并设置光标位置到最后
+            var content = editor.getValue();
+            var lastLine = editor.lineCount() - 1;
+            var lastCh = editor.getLine(lastLine) ? editor.getLine(lastLine).length : 0;
+            editor.setCursor({line: lastLine, ch: lastCh});
+
+            // 滚动到光标位置
+            editor.scrollIntoView();
+        }
+
+        // 页面加载完成后通知编辑器已准备就绪
+        window.onload = function() {
+            setTimeout(function() {
+                onEditorReady();
+            }, 100);
+        };
 </script>
 </body>
 </html>

@@ -7,6 +7,31 @@
     <WebView
         android:id="@+id/webview_editor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- 按钮区域 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="取消"
+        android:layout_marginEnd="8dp" />
+
+    <Button
+        android:id="@+id/btn_publish"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="发布"
+        android:layout_marginStart="8dp" />
+    </LinearLayout>
+
 
 </LinearLayout>
