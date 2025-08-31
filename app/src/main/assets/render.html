@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提示词管理</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        #user-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #e3f2fd;
+            border-radius: 4px;
+        }
+
+        #user-container label {
+            font-weight: bold;
+        }
+
+        #user-container input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #user-container input[type="button"] {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        #user-container input[type="button"]:hover {
+            background-color: #1976D2;
+        }
+
+        #form-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        #perform-search, #perform-insert {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+            flex: 1;
+        }
+
+        #perform-search label, #perform-insert label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        #perform-search input, #perform-insert input, #perform-insert textarea, #perform-insert select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        #perform-insert textarea {
+            height: 80px;
+            resize: vertical;
+        }
+
+        #perform-search input[type="button"], #perform-insert input[type="button"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #perform-search input[type="button"]:hover, #perform-insert input[type="button"]:hover {
+            background-color: #45a049;
+        }
+
+        #perform-delete {
+            background-color: #ffebee;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #ffcdd2;
+            margin-bottom: 20px;
+        }
+
+        #perform-delete label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #c62828;
+        }
+
+        #perform-delete input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        #perform-delete input[type="button"] {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #perform-delete input[type="button"]:hover {
+            background-color: #d32f2f;
+        }
+
+        #result {
+            font-weight: bold;
+            display: flex;
+            justify-content: flex-start;
+            column-gap: 90px;
+            padding: 15px;
+            background-color: #ffccbc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        #search-result {
+            padding-inline-start: 0;
+        }
+
+        #result-list {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #fff3e0;
+            border-radius: 4px;
+            border: 1px solid #ffe0b2;
+        }
+
+        .prompt-type {
+            min-width: 120px;
+            font-weight: bold;
+            padding: 5px;
+            background-color: #ffecb3;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .prompt-content {
+            flex: 1;
+            margin: 0 20px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        .prompt-content:hover {
+            border: 1px solid #ff9800;
+            box-shadow: 0 0 5px rgba(255, 152, 0, 0.3);
+        }
+
+        .copy {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .prompt-content:hover .copy {
+            display: block;
+        }
+
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .delete-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        #result-list-container {
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            #form-header {
+                flex-direction: column;
+            }
+
+            #result {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            #result-list {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .prompt-content {
+                margin: 10px 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>提示词管理系统</h1>
+
+        <div id="user-container">
+            <label for="uid">用户名:</label>
+            <input id="uid" name="uid" type="text" value="" placeholder="请输入用户名" />
+            <label for="auth">密码:</label>
+            <input id="auth" name="auth" type="password" value="" placeholder="请输入密码" />
+            <input type="button" id="login-button" value="登录" />
+            <input type="button" id="register-button" value="注册" />
+        </div>
+
+        <div id="form-header">
+            <form id="perform-search" name="perform-search">
+                <label for="search-text">搜索提示词:</label>
+                <input id="search-text" name="search-text" type="text" value="" placeholder="输入关键词搜索" />
+                <input type="button" id="submit-button" value="查询" />
+            </form>
+
+            <form id="perform-insert">
+                <label for="wechat-id">类型:</label>
+                <select id="wechat-id" name="wechat-id">
+                    <option value="creative">创意生成</option>
+                    <option value="problem">问题解决</option>
+                    <option value="education">学习与教育</option>
+                    <option value="improvement">自我提升</option>
+                </select>
+                <label for="book-name">提示词:</label>
+                <textarea id="book-name" name="book-name" placeholder="请输入提示词内容"></textarea>
+                <input type="button" id="insert-button" value="添加提示词" />
+            </form>
+        </div>
+
+        <form id="perform-delete">
+            <label for="id">删除提示词 (输入ID):</label>
+            <input id="id" name="id" type="text" value="" placeholder="请输入要删除的提示词ID" />
+            <input type="button" id="delete-button" value="删除" />
+        </form>
+
+        <div id="result">
+            <div>类型</div>
+            <div>提示词内容</div>
+            <div>操作</div>
+        </div>
+
+        <div id="result-list-container">
+            <!-- 搜索结果将在这里显示 -->
+            <div id="search-result">
+                <div id="result-list">
+                    <span class="prompt-type">创意生成</span>
+                    <span class="prompt-content">请帮我写一篇关于人工智能未来发展的文章<button class="copy">复制</button></span>
+                    <button class="delete-btn" data-item-id="1">删除</button>
+                </div>
+                <div id="result-list">
+                    <span class="prompt-type">问题解决</span>
+                    <span class="prompt-content">如何提高工作效率？<button class="copy">复制</button></span>
+                    <button class="delete-btn" data-item-id="2">删除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 类型映射
+        var typeMap = {
+            'creative': '创意生成',
+            'problem': '问题解决',
+            'education': '学习与教育',
+            'improvement': '自我提升'
+        };
+
+        // 复制到剪贴板功能
+        function copyToClipboard(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(function() {
+                    alert('内容已复制到剪贴板');
+                }).catch(function(err) {
+                    console.error('复制失败: ', err);
+                    fallbackCopyTextToClipboard(text);
+                });
+            } else {
+                fallbackCopyTextToClipboard(text);
+            }
+        }
+
+        function fallbackCopyTextToClipboard(text) {
+            let textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.width = "2em";
+            textArea.style.height = "2em";
+            textArea.style.padding = 0;
+            textArea.style.border = 'none';
+            textArea.style.outline = 'none';
+            textArea.style.boxShadow = 'none';
+            textArea.style.background = 'transparent';
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                let successful = document.execCommand('copy');
+                let msg = successful ? '成功复制到剪贴板' : '复制到剪贴板失败';
+                alert(msg);
+            } catch (err) {
+                console.error('复制内容到剪贴板失败: ', err);
+                alert('复制失败');
+            }
+            document.body.removeChild(textArea);
+        }
+
+        // 为复制按钮添加事件监听器
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('copy')) {
+                var content = e.target.parentElement.textContent.replace('复制', '');
+                copyToClipboard(content);
+            }
+        });
+
+        // 模拟登录功能
+        document.getElementById('login-button').addEventListener('click', function(e) {
+            let uid = document.getElementById('uid').value;
+            let auth = document.getElementById('auth').value;
+
+            if (uid && auth) {
+                localStorage.setItem('uid', uid);
+                localStorage.setItem('auth', auth);
+                alert('登录成功');
+                document.getElementById('user-container').innerHTML =
+                    `<span>当前用户: ${uid}</span>
+                     <input type="button" id="logout-button" value="退出登录" />`;
+
+                // 重新绑定退出登录按钮事件
+                document.getElementById('logout-button').addEventListener('click', function() {
+                    localStorage.removeItem('uid');
+                    localStorage.removeItem('auth');
+                    location.reload();
+                });
+            } else {
+                alert('请输入用户名和密码');
+            }
+        });
+
+        // 模拟注册功能
+        document.getElementById('register-button').addEventListener('click', function(e) {
+            let uid = document.getElementById('uid').value;
+            let auth = document.getElementById('auth').value;
+
+            if (uid && auth) {
+                localStorage.setItem('uid', uid);
+                localStorage.setItem('auth', auth);
+                alert('注册成功');
+                document.getElementById('user-container').innerHTML =
+                    `<span>当前用户: ${uid}</span>
+                     <input type="button" id="logout-button" value="退出登录" />`;
+
+                // 绑定退出登录按钮事件
+                document.getElementById('logout-button').addEventListener('click', function() {
+                    localStorage.removeItem('uid');
+                    localStorage.removeItem('auth');
+                    location.reload();
+                });
+            } else {
+                alert('请输入用户名和密码');
+            }
+        });
+
+        // 检查是否已登录
+        if (localStorage.getItem('uid') && localStorage.getItem('auth')) {
+            document.getElementById('user-container').innerHTML =
+                `<span>当前用户: ${localStorage.getItem('uid')}</span>
+                 <input type="button" id="logout-button" value="退出登录" />`;
+
+            document.getElementById('logout-button').addEventListener('click', function() {
+                localStorage.removeItem('uid');
+                localStorage.removeItem('auth');
+                location.reload();
+            });
+        }
+
+        // 模拟添加提示词功能
+        document.getElementById('insert-button').addEventListener('click', function(e) {
+            let type = document.getElementById('wechat-id').value;
+            let content = document.getElementById('book-name').value;
+
+            if (content.trim()) {
+                // 模拟添加到列表
+                let newList = document.createElement('div');
+                newList.id = 'result-list';
+                newList.innerHTML = `
+                    <span class="prompt-type">${typeMap[type] || type}</span>
+                    <span class="prompt-content">${content}<button class="copy">复制</button></span>
+                    <button class="delete-btn" data-item-id="${Date.now()}">删除</button>
+                `;
+                document.getElementById('search-result').appendChild(newList);
+                document.getElementById('book-name').value = '';
+                alert('提示词添加成功');
+            } else {
+                alert('请输入提示词内容');
+            }
+        });
+
+        // 模拟删除功能
+        document.getElementById('delete-button').addEventListener('click', function(e) {
+            let id = document.getElementById('id').value;
+            if (id) {
+                alert(`ID为 ${id} 的提示词已删除`);
+                document.getElementById('id').value = '';
+            } else {
+                alert('请输入要删除的提示词ID');
+            }
+        });
+
+        // 为动态添加的删除按钮绑定事件
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete-btn')) {
+                if (confirm('确定要删除这个提示词吗？')) {
+                    e.target.parentElement.remove();
+                    alert('删除成功');
+                }
+            }
+        });
+
+        // 模拟搜索功能
+        document.getElementById('submit-button').addEventListener('click', function(e) {
+            let searchText = document.getElementById('search-text').value;
+            alert(`搜索关键词: ${searchText}\n(这是一个演示页面，实际搜索功能需要后端支持)`);
+        });
+
+        // 回车键触发搜索
+        document.getElementById('search-text').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                document.getElementById('submit-button').click();
+            }
+        });
+    </script>
+</body>
+</html>

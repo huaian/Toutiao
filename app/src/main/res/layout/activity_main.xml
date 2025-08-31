@@ -31,6 +31,16 @@
             app:layout_behavior="com.meiji.toutiao.widget.behavior.BottomNavigationBehavior"
             app:menu="@menu/bottom_navigation_main"/>
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_new_article"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_add"
+            android:contentDescription="新建文章"
+            app:tint="@android:color/white" />
     </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView
@@ -41,6 +51,8 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/nav_menu"/>
-    <Button android:id="@+id/btn_new_article" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="新建文章" />
+    <!-- 新建文章按钮 - 悬浮在右上角 -->
+
+    <!-- 使用 Support Library 版本的 FloatingActionButton -->
 
 </android.support.v4.widget.DrawerLayout>

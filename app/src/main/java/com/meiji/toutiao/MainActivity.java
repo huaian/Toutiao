@@ -39,6 +39,8 @@ import com.meiji.toutiao.util.SettingUtil;
 import com.meiji.toutiao.widget.helper.BottomNavigationViewHelper;
 import android.view.View;
 import android.widget.Button;
+//import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.support.design.widget.FloatingActionButton;
 
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -66,7 +68,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btnNewArticle = findViewById(R.id.btn_new_article); btnNewArticle.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { Intent intent = new Intent(MainActivity.this, ArticleEditorActivity.class); startActivity(intent); } });
+        FloatingActionButton btnNewArticle = findViewById(R.id.btn_new_article); btnNewArticle.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { Intent intent = new Intent(MainActivity.this, ArticleEditorActivity.class); startActivity(intent); } });
         initView();
 
         if (savedInstanceState != null) {
